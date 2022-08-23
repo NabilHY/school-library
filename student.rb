@@ -1,13 +1,12 @@
 require './person'
 
-class Student < Person 
-    def initialize(classroom)
-        super
-        @classroom = classroom
-    end
+class Student < Person
+  def initialize(classroom)
+    super
+    @classroom = classroom
+  end
 
-    def play_hockey
-        return "'¯\(ツ)/¯'"
-    end
-
+  def play_hockey
+    "'¯\(ツ)/¯'"
+  end
 end
