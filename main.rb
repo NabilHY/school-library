@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+require './app'
+
+Appl = App.new
+
 def main
     puts "Welcome to School Library App!"
     puts "Please choose an option by entering a number:"
@@ -17,9 +21,25 @@ end
 def selected(option)
     case option
         when 1
-            puts "All Books"
+            arr_length = Appl.books.length
+            case arr_length
+                when 0
+                    puts "There are no books in the library"
+                else
+                    puts "Here are all the books in the library:"
+                    Appl.list_books
+            end
+            sleep(2)
+            main()
         when 2
-            puts "All People"
+            arr_length = Appl.person.length
+            case arr_length
+                when 0
+                    puts "There are no people in the library"
+                else
+                    puts "Here are all the people in the library:"
+                    Appl.list_people
+            end
         when 3
             puts "Do you want to create a student (1) or a teacher (2)? [Input the number]"
             input = gets.chomp.to_i
@@ -28,25 +48,43 @@ def selected(option)
                         print "Age:"
                         age = gets.chomp.to_i
                         print "Name:"
-                        name = gets.chomp.to_i
+                        name = gets.chomp.capitalize!
                         print "Has parent permission? [Y/N]:"
-                        input = gets.chomp.to_i
+                        boo = gets.chomp
+                        if boo == "Y" || boo == "y"
+                            parent_permission = true
+                        else
+                            parent_permission = false
+                        end
+                        print "ID:"
+                        id = gets.chomp.to_i
+                        Appl.add_student(age, name, id, parent_permission)
                         print "Student created successfully!"
+                        sleep(2)
+                        main()
                     when 2
                         print "Age:"
                         age = gets.chomp.to_i
                         print "Name:"
-                        name = gets.chomp.to_i
+                        name = gets.chomp.capitalize!
                         print "Specialization:"
-                        specialization = gets.chomp
+                        specialization = gets.chomp.capitalize!
+                        print "ID:"
+                        id = gets.chomp.to_i
+                        Appl.add_teacher(age, name, specialization, id)
                         print "Person created successfully!"
+                        sleep(2)
+                        main()
                 end
         when 4
             print "Title:"
-            title = gets.chomp
+            title = gets.chomp.capitalize!
             print "Author:"
-            author = gets.chomp
-            print "Book created successfully!"
+            author = gets.chomp.capatalize
+            Appl.add_book(title, author)
+            puts "Book created successfully!"
+            sleep(2)
+            main()
         when 5
             print "Select a book from the following list by number"
         when 6

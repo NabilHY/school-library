@@ -1,27 +1,49 @@
+require './book'
+require './classroom'
+require './person'
+require './rental'
+require './student'
+require './teacher'
+
 class App 
-    
-    def initialize(option)
-        @option = option
+
+    attr_reader :books, :person, :rentals
+
+    def initialize
+        @books = []
+        @person = []
+        @rentals = []
     end
 
-    def options(option)
-        case option
-        when 1
-            puts "All Books"
-        when 2
-            puts "All People"
-        when 3
-            puts "Create a Person"
-        when 4
-            puts "Create a Book"
-        when 5
-            puts "Create a Rental"
-        when 6
-            puts "All Rentals for a specific person"
-        when 7
-            Exit
-        else
-            puts "Invalid option"
+    def list_books 
+        @books.each do |book|
+            puts "Title: #{book.title}, Author: #{book.author}"
         end
+    end
+
+    def add_book(title, author)
+        book = Book.new(title, author)
+        @books.push(book)
+    end
+
+    def list_people
+        @person.each do |pers|
+            puts "[#{pers.ps}] Name: #{pers.name}, ID: #{pers.id}, Age: #{pers.age}"
+        end
+    end
+
+    def add_teacher(age, name, id, specialization)
+        teacher = Teacher.new(name, age, id, specialization)
+        @person.push(teacher)
+    end
+
+    def add_student(age, name, id,  parent_permission)
+        student = Student.new(age, name, id,  parent_permission)
+        @person.push(student)
+    end
 end
+
+
+
+
 
