@@ -40,6 +40,8 @@ def selected(option)
                     puts "Here are all the people in the library:"
                     Appl.list_people
             end
+            sleep(3)
+            main()
         when 3
             puts "Do you want to create a student (1) or a teacher (2)? [Input the number]"
             input = gets.chomp.to_i
@@ -80,20 +82,55 @@ def selected(option)
             print "Title:"
             title = gets.chomp.capitalize!
             print "Author:"
-            author = gets.chomp.capatalize
+            author = gets.chomp.capitalize!
             Appl.add_book(title, author)
             puts "Book created successfully!"
             sleep(2)
             main()
         when 5
-            print "Select a book from the following list by number"
+            person_arr_length = Appl.person.length
+            books_arr_length = Appl.books.length
+            if person_arr_length == 0 || books_arr_length == 0
+                puts "There are no people or books in the library"
+                sleep(2)
+                main()
+            else
+                puts "Select a book from the following list by number(not ID):"
+                Appl.list_books_by_index
+                book = gets.chomp.to_i
+                puts "Select a person from the following list by number(not ID):"
+                Appl.list_persons_by_index
+                person = gets.chomp.to_i
+                print "Date:"
+                date = gets.chomp
+                Appl.rentals.push(Rental.new(Appl.books[book], Appl.person[person], date))
+                puts "Rental created successfully!"
+                sleep(2)
+            main()
+        end
         when 6
             print "ID of person"
             id = gets.chomp.to_i
+            person = Appl.person.find { |person| person.id == id }
+            if person == nil
+                puts "There is no person with that ID"
+                sleep(2)
+                main()
+            else
+                puts "Here are all the rentals for #{person.name}:"
+                Appl.list_rentals_for_person(person)
+                sleep(2)
+                main()
+            end
+                
         when 7
-            Exit
+            puts "Goodbye!"
+            sleep(2)
+            exit
         else
             puts "Invalid option"
+            sleep(1)
+            main()
     end
 end
 
