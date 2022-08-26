@@ -1,8 +1,7 @@
 require './decorator'
 
 class Person < Nameable
-  attr_accessor :id, :name, :age
-  attr_accessor :rentals
+  attr_accessor :id, :name, :age, :rentals
 
   def initialize(age, name = 'Unknown')
     @age = age
