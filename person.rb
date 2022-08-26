@@ -2,13 +2,19 @@ require './decorator'
 
 class Person < Nameable
   attr_accessor :id, :name, :age
+  attr_accessor :rentals
 
   def initialize(age, name = 'Unknown')
     @age = age
     @name = name
     @id = id
     @parent_permission = true
+    @rentals = []
     super()
+  end
+
+  def add_rental(rental)
+    @rentals.push(rental)
   end
 
   def correct_name
@@ -31,10 +37,3 @@ class Person < Nameable
     end
   end
 end
-
-person = Person.new(22, 'maximilianus')
-person.correct_name
-CapitalizedPerson = CapitalizeDecorator.new(person)
-CapitalizedPerson.correct_name
-CapitalizedTrimmedPerson = TrimmerDecorator.new(CapitalizedPerson)
-CapitalizedTrimmedPerson.correct_name
