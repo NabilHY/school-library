@@ -1,9 +1,12 @@
 require './person'
 
 class Teacher < Person
-  def initialize(specialization)
-    super
+  attr_reader :ps
+
+  def initialize(age, name, specialization, id)
+    super(age, name, id)
     @specialization = specialization
+    @ps = 'Teacher'
   end
 
   def can_use_services?
