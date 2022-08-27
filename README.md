@@ -42,7 +42,8 @@ Install all project dependencies by running the command below
 
 ### Run the application
 ```
-
+cd school-library
+$ ruby main.rb
 ```
 ### Check linter errors
 Start the webpack dev server
