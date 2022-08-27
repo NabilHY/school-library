@@ -36,7 +36,7 @@ class Choice
     when 6
       Appl.list_rentals_for_person
     when 7
-      puts 'Goodbye!'
+      puts 'Thank you for using this app!'
       exit
     else
       puts 'Invalid option'
