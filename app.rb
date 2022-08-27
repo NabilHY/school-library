@@ -141,7 +141,7 @@ class App
     parent_permission = %w[Y y].include?(boo)
     print 'ID:'
     id = gets.chomp.to_i
-    (age, name, id, parent_permission)
+    add_student(age, name, id, parent_permission)
     print 'Student created successfully!'
     sleep(2)
     main
