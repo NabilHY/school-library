@@ -24,17 +24,17 @@ class Choice
   def selected
     case @option
     when 1
-      Appl.list_books
+      Appl.books_class.list_books
     when 2
-      Appl.list_people
+      Appl.person_class.list_people
     when 3
-      Appl.person_input
+      Appl.person_class.person_input
     when 4
-      Appl.add_book
+      Appl.books_class.add_book
     when 5
-      Appl.rental_creation
+      Appl.rental_class.rental_creation
     when 6
-      Appl.list_rentals_for_person
+      Appl.rental_class.list_rentals_for_person
     when 7
       puts 'Thank you for using this app!'
       exit
